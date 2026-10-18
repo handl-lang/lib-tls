@@ -1,0 +1,27 @@
+--- tls -- nonblocking TLS contract.
+---
+--- Every call is a *step*: it performs one nonblocking attempt and
+--- reports what the caller must wait for, so a `concurrent` scheduler
+--- can park the task on the socket and retry. Nothing here blocks or
+--- loops. Handles are plain integers so they can live in serialized
+--- scheduler state.
+---
+---   ctx_server(cert, key)        -> Ctx
+---   ctx_client(_)                -> Ctx
+---   wrap_server(ctx, fd)         -> Ssl
+---   wrap_client(ctx, fd, host)   -> Ssl
+---   handshake_step(ssl, server?) -> { done } | { want: "read"|"write" }
+---                                   | { err }
+---   read_step(ssl)               -> { data: Bytes } | { eof }
+---                                   | { want: .. } | { err }
+---   write_step(ssl, buf)         -> { sent: Int } | { want: .. } | { err }
+---   close(ssl) / free(ssl) / ctx_free(ctx)
+
+export CtxServer     := (String, String) ~[1]~> Ctx
+export CtxClient     := (Unit) ~[1]~> Ctx
+export WrapServer    := (Ctx, Int) ~[1]~> Ssl
+export WrapClient    := (Ctx, Int, String) ~[1]~> Ssl
+export HandshakeStep := (Ssl, Bool) ~[1]~> StepResult
+export ReadStep      := (Ssl) ~[1]~> StepResult
+export WriteStep     := (Ssl, Bytes) ~[1]~> StepResult
+export Close         := (Ssl) ~[1]~> Unit

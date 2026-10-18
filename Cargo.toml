@@ -1,0 +1,10 @@
+[package]
+name = "handl-lib-tls"
+version = "0.1.0"
+edition = "2024"
+description = "tls: nonblocking TLS contract — Handl stdlib port (ADR-0128 split)."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/handl-lang/lib-tls"
+
+# Const-only: pure handl.
+[dependencies]
