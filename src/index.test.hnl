@@ -1,0 +1,17 @@
+--- tls -- nonblocking TLS contract smoke tests.
+---
+--- Contract-only repo: the eight step-surface exports must be present
+--- as capability values. Implementations (`tls-libssl`, …) provide the
+--- `~>[1]` effectful arrows; nothing here is callable without a
+--- backend.
+
+from "./index" import * as m
+
+test_ctx_arrows := assert m.CtxServer != null && m.CtxClient != null
+
+test_wrap_arrows := assert m.WrapServer != null && m.WrapClient != null
+
+test_step_arrows := assert m.HandshakeStep != null
+  && m.ReadStep != null && m.WriteStep != null
+
+test_close := assert m.Close != null
