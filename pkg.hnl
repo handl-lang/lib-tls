@@ -1,3 +1,3 @@
 -- lib-tls: modules this package provides (entry defaults to
 -- src/index.hnl; N modules resolve to src/<name>/index.hnl).
-{ modules: ["tls"], description: "The tls port contract — step-based TLS surface.", license: "MIT" }
+{ modules: ["tls"], name: "tls", description: "The tls port contract — step-based TLS surface.", license: "MIT" }
