@@ -9,7 +9,7 @@ The `tls` **port contract** — step-based TLS surface implemented by
 | --- | --- |
 | `src/index.hnl` | the contract |
 | `pkg.hnl` | package manifest — `modules: ["tls"]` |
-| `scripts/hnl-gate.sh`, `ci.sh` | the gate / bupha entry |
+| `scripts/hnl-gate.sh`, `workflows/gate.yaml` | the gate / bupha entry |
 
 ## Contract
 
