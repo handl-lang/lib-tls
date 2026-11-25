@@ -1,3 +1,31 @@
+# lib-tls
+
+The `tls` **port contract** — step-based TLS surface implemented by
+`tls-libssl`. Pure `.hnl`.
+
+## Layout
+
+| path | role |
+| --- | --- |
+| `src/index.hnl` | the contract |
+| `pkg.hnl` | package manifest — `modules: ["tls"]` |
+| `scripts/hnl-gate.sh`, `ci.sh` | the gate / bupha entry |
+
+## Contract
+
+- Step-based TLS surface (nonblocking primitives a scheduler can
+  park on); the implementation is `lib-tls-libssl`.
+
+## Verification
+
+```bash
+HNL=../host-cli/target/debug/hnl scripts/hnl-gate.sh
+```
+
+## License
+
+MIT.
+
 <!-- myco:agent-awareness -->
 
 ## Agent awareness
